@@ -4,48 +4,62 @@
 
 ![Status](https://img.shields.io/badge/Status-Beta-orange)
 ![Tech](https://img.shields.io/badge/Tech-React%20%7C%20Vite%20%7C%20Gemini%202.5-blue)
+![Architecture](https://img.shields.io/badge/Arch-Hybrid%20Cloud-purple)
+
+## 🌐 Live Demo
+[https://celestial-ai-reloaded.vercel.app](https://celestial-ai-reloaded.vercel.app)
 
 ## 🌟 Key Features
 
 *   **AI Panditji (Live Audio):** Speak directly to a Vedic Sage using Gemini 2.5 Flash Native Audio. Includes real-time "Cosmic Wave" visualization.
+*   **Daily Horoscope Engine (Hybrid):** Implements a "Generate Once, Serve Many" architecture. 
+    *   *Admin* generates daily insights via Gemini.
+    *   *Users* fetch instantly from Global Cache (Firebase).
+    *   *Fallback* to live AI generation if cache misses.
 *   **Precision Dashboard:** Solar intensity graphs, Rahu Kaal tracking, and daily Panchang based on geolocation (Delhi default).
 *   **Kundli Engine:** Offline astrological matching algorithms (Guna Milan) and birth chart analysis.
-*   **Cosmic Blog:** Static content engine for astrological insights.
 *   **PWA Ready:** Installable on iOS and Android.
 
-## 🚀 Deployment (Wave 1)
+## 🚀 How to Run (Troubleshooting Guide)
 
-### 1. Prerequisites
-You need a Google Cloud Project with the Gemini API enabled.
+If you see "Other Project" in your terminal, follow these steps to switch to Celestial AI:
+
+1.  **Stop Current Server:** Click Terminal > Press `Ctrl + C`.
+2.  **Check Location:** Type `ls` (Mac) or `dir` (Windows) to see current folders.
+3.  **Enter Project Folder:** Type `cd celestial-ai-pwa` (or whatever you named your folder).
+4.  **Install Dependencies:** `npm install` (Only needed once).
+5.  **Start Server:** `npm run dev`.
+
+## 🚀 Deployment (Wave 2: Hybrid Cloud)
+
+To enable the full "Global Cache" features, you need both Gemini API and Firebase Firestore.
+
+### 1. Gemini API (The Brain)
 *   Get API Key: [Google AI Studio](https://aistudio.google.com/)
 
-### 2. Environment Variables
-**Crucial:** Do not commit your API Key to GitHub.
+### 2. Firebase Firestore (The Memory)
+1.  Go to [Firebase Console](https://console.firebase.google.com/).
+2.  Create a project -> Add Web App.
+3.  Enable **Firestore Database** (Start in **Test Mode** for now).
+4.  Enable **Authentication** -> **Google** Sign-in provider.
+5.  Copy your config keys.
 
-**Local Development:**
-Create a `.env` file in the root directory:
+### 3. Environment Variables
+Create a `.env` file in the root directory. **Do not commit this file.**
+
 ```bash
-API_KEY=AIzaSyYourKeyHere...
+# Gemini API KEY
+API_KEY=AIzaSy...
+
+# Firebase Config (VITE_ prefix is required for frontend access)
+VITE_FIREBASE_API_KEY=AIzaSy...
+VITE_FIREBASE_AUTH_DOMAIN=your-app.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your-app-id
+VITE_FIREBASE_STORAGE_BUCKET=your-app.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=123456...
+VITE_FIREBASE_APP_ID=1:123456...
 ```
 
-**Vercel Deployment:**
-1.  Push this repo to GitHub.
-2.  Import project into Vercel.
-3.  In **Settings > Environment Variables**, add:
-    *   **Key:** `API_KEY`
-    *   **Value:** `AIzaSy...`
-
-## 🏗️ Architecture
-
-*   **Frontend:** React 19 + TypeScript
-*   **Styling:** Tailwind CSS (Glassmorphism / Space Theme)
-*   **AI:** `@google/genai` SDK (Gemini 2.5 Flash)
-*   **Visualization:** HTML5 Canvas (Wave Methodology)
-*   **Charts:** Recharts
-
-## 🛡️ Privacy
-
-This app uses the Microphone for the AI interaction. Audio data is streamed to Google Gemini for processing and is not stored permanently on our servers.
-
 ---
+
 *© 2025 CelestialAI - Om Shanti*

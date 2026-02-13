@@ -5,7 +5,8 @@ export enum ViewState {
   PANDITJI = 'PANDITJI',
   KUNDLI = 'KUNDLI',
   BLOG = 'BLOG',
-  ADMIN = 'ADMIN'
+  ADMIN = 'ADMIN',
+  PROFILE = 'PROFILE'
 }
 
 export interface ZodiacSign {
@@ -53,6 +54,16 @@ export interface BirthDetails {
   date: string;
   time: string;
   place: string;
+}
+
+export interface UserProfile {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL?: string;
+  membershipTier: 'FREE' | 'PREMIUM';
+  birthDetails?: BirthDetails;
+  joinedAt: string;
 }
 
 export interface BlogPost {

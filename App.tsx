@@ -6,6 +6,8 @@ import AIPanditji from './components/AIPanditji';
 import Kundli from './components/Kundli';
 import Blog from './components/Blog';
 import Landing from './components/Landing';
+import Admin from './components/Admin';
+import UserProfile from './components/UserProfile';
 import { ViewState } from './types';
 
 const App: React.FC = () => {
@@ -30,14 +32,10 @@ const App: React.FC = () => {
         return <Kundli />;
       case ViewState.BLOG:
         return <Blog />;
+      case ViewState.PROFILE:
+        return <UserProfile />;
       case ViewState.ADMIN:
-        return (
-          <div className="flex flex-col items-center justify-center h-full p-8 text-center text-gray-400">
-             <i className="fa-solid fa-lock text-6xl mb-4 text-divine-gold/50"></i>
-             <h2 className="text-2xl font-serif text-white mb-2">Admin Panel</h2>
-             <p>Batch generation controls restricted to authorized personnel.</p>
-          </div>
-        );
+        return <Admin />;
       default:
         return <Dashboard date={selectedDate} setDate={setSelectedDate} />;
     }
@@ -89,8 +87,11 @@ const App: React.FC = () => {
                 <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-divine-gold rounded-full"></span>
               </button>
 
-              {/* User Profile */}
-              <button className="w-8 h-8 rounded-full bg-gradient-to-br from-divine-gold to-divine-amber flex items-center justify-center text-space-black font-bold shadow-lg hover:scale-105 transition-transform">
+              {/* User Profile Button */}
+              <button 
+                onClick={() => setCurrentView(ViewState.PROFILE)}
+                className="w-8 h-8 rounded-full bg-gradient-to-br from-divine-gold to-divine-amber flex items-center justify-center text-space-black font-bold shadow-lg hover:scale-105 transition-transform"
+              >
                 <i className="fa-solid fa-user"></i>
               </button>
            </div>

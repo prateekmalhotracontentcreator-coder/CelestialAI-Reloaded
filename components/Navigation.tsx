@@ -1,5 +1,6 @@
 import React from 'react';
 import { ViewState } from '../types';
+import { db } from '../services/firebase';
 
 interface NavigationProps {
   currentView: ViewState;
@@ -7,12 +8,15 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
+  const isOnline = !!db;
+
   const navItems = [
     { id: ViewState.DASHBOARD, label: 'Dashboard', icon: 'fa-chart-pie' },
     { id: ViewState.HOROSCOPE, label: 'Horoscope', icon: 'fa-star' },
-    { id: ViewState.BLOG, label: 'Insights', icon: 'fa-book-open' }, // Added Blog
+    { id: ViewState.BLOG, label: 'Insights', icon: 'fa-book-open' },
     { id: ViewState.PANDITJI, label: 'AI Panditji', icon: 'fa-om', special: true },
     { id: ViewState.KUNDLI, label: 'Kundli', icon: 'fa-scroll' },
+    { id: ViewState.PROFILE, label: 'Account', icon: 'fa-user-circle' },
     { id: ViewState.ADMIN, label: 'Admin', icon: 'fa-user-cog' },
   ];
 
@@ -41,8 +45,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentView, setView }) => {
             </button>
           ))}
         </div>
-        <div className="p-4 border-t border-divine-gold/20 text-xs text-gray-500 text-center font-sans">
-          &copy; 2025 CelestialAI
+        <div className="p-4 border-t border-divine-gold/20 flex flex-col items-center gap-2">
+           <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-black/40 border border-white/5 text-[10px] uppercase font-bold tracking-wider">
+               <div className={`w-2 h-2 rounded-full ${isOnline ? 'bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500'}`}></div>
+               <span className={isOnline ? 'text-green-500' : 'text-red-500'}>{isOnline ? 'DB Online' : 'DB Offline'}</span>
+           </div>
+           <div className="text-xs text-gray-600 font-sans">
+            &copy; 2025 CelestialAI
+          </div>
         </div>
       </nav>
 
