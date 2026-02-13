@@ -1,0 +1,8 @@
+{
+  "name": "CelestialAI",
+  "description": "Vedic Astrology & AI Spiritual Guidance PWA featuring Gemini Live.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
