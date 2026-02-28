@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import Dashboard from './components/Dashboard';
 import Horoscope from './components/Horoscope';
@@ -102,6 +103,7 @@ const App: React.FC = () => {
           {renderView()}
         </div>
       </main>
+      <Analytics />
     </div>
   );
 };
