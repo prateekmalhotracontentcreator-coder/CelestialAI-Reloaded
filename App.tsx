@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navigation from './components/Navigation';
 import Dashboard from './components/Dashboard';
 import Horoscope from './components/Horoscope';
@@ -42,7 +43,12 @@ const App: React.FC = () => {
   };
 
   if (currentView === ViewState.LANDING) {
-    return <Landing onEnter={() => setCurrentView(ViewState.DASHBOARD)} />;
+    return (
+      <>
+        <Landing onEnter={() => setCurrentView(ViewState.DASHBOARD)} />
+        <SpeedInsights />
+      </>
+    );
   }
 
   return (
@@ -102,6 +108,7 @@ const App: React.FC = () => {
           {renderView()}
         </div>
       </main>
+      <SpeedInsights />
     </div>
   );
 };
